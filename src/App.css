@@ -36,3 +36,11 @@
     transform: rotate(360deg);
   }
 }
+
+.MuiBackdrop-root {
+  background-color: rgba(0, 0, 0, 0) !important;
+  width: 0 !important;
+}
+#myUpperDrawer {
+  width: 0;
+}
