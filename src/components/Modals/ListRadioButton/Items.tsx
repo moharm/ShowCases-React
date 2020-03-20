@@ -84,7 +84,7 @@ const Items = (props: ItemsProps) => {
                                     control={<Checkbox color="primary" />}
                                     label={child.label}
                                     labelPlacement="end"
-                                    checked={item.isChecked}
+                                    checked={child.isChecked}
                                   />
                                 ))
                               : undefined}

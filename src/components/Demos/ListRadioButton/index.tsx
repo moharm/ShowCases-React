@@ -22,23 +22,20 @@ const ListRadioButtonDemo: React.FC = () => {
     let dataUpdated = state;
     const colomnsUpdated = data.colomns.map(colomn => {
       colomn.items.map(item => {
-        console.log(item.id + ' ' + event.target.name);
-
         if (item.id === event.target.name) {
           item.isChecked = checked;
-          console.log('here ' + item.isChecked);
         }
+        return item;
       });
       return colomn;
     });
-    data.colomns = colomnsUpdated;
-    setState(prev => dataUpdated);
-    console.log(event.target.name);
-    console.log(checked);
+    dataUpdated.colomns = colomnsUpdated;
+    setState(prevState => ({
+      ...prevState,
+      colomnsUpdated
+    }));
   };
-  useEffect(() => {
-    console.log(state);
-  });
+
   return (
     <div>
       <ListRadioButton
