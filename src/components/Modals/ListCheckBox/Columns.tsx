@@ -8,9 +8,9 @@ function Columns(props: ColumnsProps) {
   return (
     <table>
       <tbody>
-        <tr>
+        <tr style={{ display: 'flex' }}>
           {columns.map((colomn, index) => (
-            <td key={index}>
+            <td key={index} style={{ display: 'block' }}>
               <table>
                 <tbody>
                   <Items

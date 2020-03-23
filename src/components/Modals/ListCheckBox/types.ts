@@ -3,7 +3,7 @@ export type Items = Array<{
   label: string;
   hasIconButton: boolean;
   Icon?: (props: any) => JSX.Element;
-  hasChild: boolean;
+  hasChild?: boolean;
   isChecked: boolean;
   childs?: {
     id: string;

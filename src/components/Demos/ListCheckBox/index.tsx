@@ -1,7 +1,7 @@
 import React, { useState, useEffect, ChangeEvent } from 'react';
-import ListRadioButton from '../../Modals/ListRadioButton';
-import { data } from '../../../assets/mock/radioButtonData';
-import { Data } from '../../Modals/ListRadioButton/types';
+import { data } from '../../../assets/mock/checkBoxData';
+import { Data } from '../../Modals/ListCheckBox/types';
+import ListCheckBox from '../../Modals/ListCheckBox';
 
 const ListRadioButtonDemo: React.FC = () => {
   const [state, setState] = useState<Data>(data);
@@ -20,15 +20,13 @@ const ListRadioButtonDemo: React.FC = () => {
     checked: boolean,
     newColumns: Data['colomns']
   ) => {
-    setState((prevState: Data) => ({
-      ...prevState,
-      newColumns
-    }));
+    //log the items updated
+    console.log(newColumns);
   };
 
   return (
     <div>
-      <ListRadioButton
+      <ListCheckBox
         data={state}
         headerIconButtonOnClick={headerIconButtonHundleClick}
         itemIconButtonOnClick={itemIconButtonHundleClick}

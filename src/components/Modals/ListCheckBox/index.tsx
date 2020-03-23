@@ -1,16 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from './Header';
 import Columns from './Columns';
-import { ListRadioButtonProps } from './types';
+import { ListRadioButtonProps, Data } from './types';
 
-const ListRadioButton = (props: ListRadioButtonProps) => {
+const ListCheckBox = (props: ListRadioButtonProps) => {
   const {
     data,
     headerIconButtonOnClick,
     itemIconButtonOnClick,
     itemOnChange
   } = props;
-  const { header, colomns } = data;
+  const [state, setState] = useState<Data>(data);
 
   const hundleItemOnChange = (
     event: React.ChangeEvent<HTMLInputElement>,
@@ -32,11 +32,15 @@ const ListRadioButton = (props: ListRadioButtonProps) => {
             }
           });
         }
-
         return item;
       });
       return colomn;
     });
+
+    setState((prevState: Data) => ({
+      ...prevState,
+      colomnsUpdated
+    }));
 
     itemOnChange(event, checked, colomnsUpdated);
   };
@@ -45,12 +49,12 @@ const ListRadioButton = (props: ListRadioButtonProps) => {
     <div>
       <Header
         key="header"
-        header={header}
+        header={state.header}
         iconButtonOnClick={headerIconButtonOnClick}
       />
       <Columns
         key="columns"
-        columns={colomns}
+        columns={state.colomns}
         itemOnChange={hundleItemOnChange}
         iconButtonOnClick={itemIconButtonOnClick}
       />
@@ -58,4 +62,4 @@ const ListRadioButton = (props: ListRadioButtonProps) => {
   );
 };
 
-export default ListRadioButton;
+export default ListCheckBox;
