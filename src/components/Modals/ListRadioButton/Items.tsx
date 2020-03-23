@@ -35,7 +35,7 @@ const Items = (props: ItemsProps) => {
   return (
     <>
       {items.map(item => (
-        <tr>
+        <tr key={item.id}>
           <td>
             <FormControlLabel
               key={item.id}

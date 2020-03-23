@@ -10,7 +10,7 @@ function Columns(props: ColumnsProps) {
       <tbody>
         <tr>
           {columns.map((colomn, index) => (
-            <td>
+            <td key={index}>
               <table>
                 <tbody>
                   <Items
