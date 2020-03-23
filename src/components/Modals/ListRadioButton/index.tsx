@@ -1,45 +1,7 @@
-import React, { ChangeEvent } from 'react';
-import Items from './Items';
+import React from 'react';
 import Header from './Header';
-
-type Items = Array<{
-  id: string;
-  label: string;
-  hasIconButton: boolean;
-  Icon?: (props: any) => JSX.Element;
-  hasChild: boolean;
-  isChecked: boolean;
-  childs?: {
-    id: string;
-    label: string;
-    hasIconButton: boolean;
-    Icon?: (props: any) => JSX.Element;
-    isChecked: boolean;
-  }[];
-}>;
-
-export interface Data {
-  header: {
-    title: string;
-    hasIconButton: boolean;
-    Icon?: (props: any) => JSX.Element;
-  };
-  colomns: { items: Items }[];
-}
-interface ListRadioButtonProps {
-  data: Data;
-  headerIconButtonOnClick: (event: React.MouseEvent<HTMLInputElement>) => void;
-  itemIconButtonOnClick: (event: React.MouseEvent<HTMLInputElement>) => void;
-  itemOnChange: (
-    event: React.ChangeEvent<HTMLInputElement>,
-    checked: boolean
-  ) => void;
-}
-
-// const hundleChange = (
-//   event: React.ChangeEvent<HTMLInputElement>,
-//   checked: boolean
-// ) => {};
+import Columns from './Columns';
+import { ListRadioButtonProps } from './types';
 
 const ListRadioButton = (props: ListRadioButtonProps) => {
   const {
@@ -50,17 +12,46 @@ const ListRadioButton = (props: ListRadioButtonProps) => {
   } = props;
   const { header, colomns } = data;
 
+  const hundleItemOnChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+    checked: boolean
+  ) => {
+    event.persist(); // Event Pooling
+    const colomnsUpdated = data.colomns.map(colomn => {
+      colomn.items.map(item => {
+        if (item.id === event.target.name) {
+          item.isChecked = checked;
+        }
+        if (item.childs) {
+          item.childs.map(child => {
+            if (child.id === event.target.name) {
+              child.isChecked = checked;
+            }
+            if (!item.isChecked && child.isChecked) {
+              child.isChecked = checked;
+            }
+          });
+        }
+
+        return item;
+      });
+      return colomn;
+    });
+
+    itemOnChange(event, checked, colomnsUpdated);
+  };
+
   return (
     <div>
       <Header
         key="header"
-        headerData={header}
+        header={header}
         iconButtonOnClick={headerIconButtonOnClick}
       />
-      <Items
-        key="items"
-        itemsData={colomns}
-        itemOnChange={itemOnChange}
+      <Columns
+        key="columns"
+        columns={colomns}
+        itemOnChange={hundleItemOnChange}
         iconButtonOnClick={itemIconButtonOnClick}
       />
     </div>

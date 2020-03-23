@@ -1,6 +1,6 @@
 import ControlPointRoundedIcon from '@material-ui/icons/ControlPointRounded';
 import VisibilityIcon from '@material-ui/icons/Visibility';
-import { Data } from '../../Modals/ListRadioButton';
+import { Data } from '../../components/Modals/ListRadioButton/types';
 
 export const data: Data = {
   header: {
@@ -23,7 +23,6 @@ export const data: Data = {
           id: 'Adience public2',
           label: 'Adience public 2',
           hasIconButton: false,
-
           Icon: VisibilityIcon,
           hasChild: false,
           isChecked: false
@@ -34,7 +33,7 @@ export const data: Data = {
           hasIconButton: false,
           Icon: VisibilityIcon,
           hasChild: false,
-          isChecked: true
+          isChecked: false
         },
         {
           id: 'Adience public4',
@@ -44,13 +43,12 @@ export const data: Data = {
           Icon: VisibilityIcon,
           hasChild: true,
 
-          isChecked: false,
+          isChecked: true,
           childs: [
             {
               id: 'Adience public4.1',
               label: 'Adience public 4.1',
               hasIconButton: true,
-
               Icon: VisibilityIcon,
               isChecked: false
             }
@@ -72,7 +70,6 @@ export const data: Data = {
           id: 'Adience public6',
           label: 'Adience public 6',
           hasIconButton: false,
-
           Icon: VisibilityIcon,
           hasChild: false,
           isChecked: false

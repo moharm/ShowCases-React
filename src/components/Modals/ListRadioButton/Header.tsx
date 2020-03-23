@@ -2,12 +2,7 @@ import React from 'react';
 import { Box, createStyles, Theme } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import IconButton from '../IconButton';
-import { Data } from '.';
-
-interface HeaderProps {
-  headerData: Data['header'];
-  iconButtonOnClick?: (arg: React.MouseEvent<HTMLInputElement>) => void;
-}
+import { HeaderProps } from './types';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -29,8 +24,8 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const Header = (props: HeaderProps) => {
   const classes = useStyles();
-  const { headerData, iconButtonOnClick } = props;
-  const { title, hasIconButton, Icon } = headerData;
+  const { header, iconButtonOnClick } = props;
+  const { title, hasIconButton, Icon } = header!;
 
   return (
     <div className={classes.root}>

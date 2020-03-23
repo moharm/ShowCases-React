@@ -1,38 +1,28 @@
-import React, { useState, useEffect } from 'react';
-import { data } from './data';
-import ListRadioButton, { Data } from '../../Modals/ListRadioButton';
+import React, { useState, useEffect, ChangeEvent } from 'react';
+import ListRadioButton from '../../Modals/ListRadioButton';
+import { data } from '../../../assets/mock/radioButtonData';
+import { Data } from '../../Modals/ListRadioButton/types';
 
 const ListRadioButtonDemo: React.FC = () => {
   const [state, setState] = useState<Data>(data);
 
   const headerIconButtonHundleClick = (event: React.MouseEvent<any>) => {
     event.persist(); // Event Pooling
-    console.log(event);
+    alert("event from header's iconButtom");
   };
   const itemIconButtonHundleClick = (event: React.MouseEvent<any>) => {
     event.persist(); // Event Pooling
-    console.log(event);
+    alert("event from item's iconButtom");
   };
 
   const itemOnChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
-    checked: boolean
+    event: ChangeEvent,
+    checked: boolean,
+    newColumns: Data['colomns']
   ) => {
-    event.persist(); // Event Pooling
-    let dataUpdated = state;
-    const colomnsUpdated = data.colomns.map(colomn => {
-      colomn.items.map(item => {
-        if (item.id === event.target.name) {
-          item.isChecked = checked;
-        }
-        return item;
-      });
-      return colomn;
-    });
-    dataUpdated.colomns = colomnsUpdated;
-    setState(prevState => ({
+    setState((prevState: Data) => ({
       ...prevState,
-      colomnsUpdated
+      newColumns
     }));
   };
 
