@@ -9,11 +9,12 @@ interface propstype {
   onClick?: (arg: React.MouseEvent<any>) => void;
   children?: ReactNode;
   style: string;
+  disabled: boolean;
   otherProps?: any;
 }
 
 const IconButton = (props: propstype & any) => {
-  const { size, color, onClick, children, style, otherProps } = props;
+  const { size, color, onClick, children, style, disabled, otherProps } = props;
 
   return (
     <IconButtonCom
@@ -23,6 +24,7 @@ const IconButton = (props: propstype & any) => {
       aria-label="upload picture"
       component="span"
       onClick={onClick}
+      disabled={disabled}
       {...otherProps}
     >
       {children}

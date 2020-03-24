@@ -32,7 +32,7 @@ function Columns(props: ColumnsProps) {
             >
               {columns.map((colomn, index) => (
                 <td key={index} style={{ display: 'block' }}>
-                  <RadioButtonList //checkbox
+                  <RadioButtonList //radio
                     items={colomn.items}
                     itemOnChange={itemOnChange}
                     iconButtonOnClick={iconButtonOnClick}

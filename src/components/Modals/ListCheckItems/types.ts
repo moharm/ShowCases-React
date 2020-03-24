@@ -25,7 +25,7 @@ export interface Header {
 }
 
 export interface Data {
-  header?: Header;
+  header: Header;
   body: {
     params: {
       type: 'radioButton' | 'checkBox';
@@ -39,13 +39,16 @@ export interface Data {
   };
 }
 
-export interface ListRadioButtonProps {
+export interface ListCheckItemsProps {
   data: Data;
   headerIconButtonOnClick: (event: React.MouseEvent<HTMLInputElement>) => void;
-  itemIconButtonOnClick: (event: React.MouseEvent<HTMLInputElement>) => void;
+  itemIconButtonOnClick: (
+    event: React.MouseEvent<HTMLInputElement>,
+    item: Items[0]
+  ) => void;
   itemOnChange: (
     eventChecked: React.ChangeEvent<HTMLInputElement>,
-    newItems: Data['body']['colomns']
+    newColumns: Data['body']['colomns']
   ) => void;
 }
 export interface HeaderProps {
@@ -56,7 +59,10 @@ export interface HeaderProps {
 export interface ColumnsProps {
   columns: Data['body']['colomns'];
   itemOnChange: (event: React.ChangeEvent<any>) => void;
-  iconButtonOnClick: (event: React.MouseEvent<HTMLInputElement>) => void;
+  iconButtonOnClick: (
+    event: React.MouseEvent<HTMLInputElement>,
+    item: Items[0]
+  ) => void;
   params: {
     type: 'radioButton' | 'checkBox';
     name?: string;
@@ -66,9 +72,29 @@ export interface ColumnsProps {
   };
 }
 
-export interface ItemsProps {
+export interface CheckboxListProps {
   items: Data['body']['colomns'][0]['items'];
-  iconButtonOnClick: (event: React.MouseEvent<HTMLInputElement>) => void;
+  iconButtonOnClick: (
+    event: React.MouseEvent<HTMLInputElement>,
+    item: Items[0]
+  ) => void;
+  itemOnChange: (event: React.ChangeEvent<any>) => void;
+  disabled?: boolean;
+  params: {
+    type: 'radioButton' | 'checkBox';
+    name?: string;
+
+    hasIconButton: boolean;
+    Icon: (props: any) => JSX.Element;
+  };
+}
+
+export interface ListRadioButtonProps {
+  items: Data['body']['colomns'][0]['items'];
+  iconButtonOnClick: (
+    event: React.MouseEvent<HTMLInputElement>,
+    item: Items[0]
+  ) => void;
   itemOnChange: (event: React.ChangeEvent<any>) => void;
   disabled?: boolean;
   params: {

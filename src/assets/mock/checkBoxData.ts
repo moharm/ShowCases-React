@@ -1,6 +1,6 @@
 import ControlPointRoundedIcon from '@material-ui/icons/ControlPointRounded';
 import VisibilityIcon from '@material-ui/icons/Visibility';
-import { Data } from '../../components/Modals/ListCheckBox/types';
+import { Data } from '../../components/Modals/ListCheckItems/types';
 
 export const data: Data = {
   header: {
@@ -11,6 +11,7 @@ export const data: Data = {
   body: {
     params: {
       type: 'checkBox',
+      // name: 'radioButton',
       hasIconButton: true,
       Icon: VisibilityIcon
     },

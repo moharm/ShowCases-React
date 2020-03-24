@@ -22,7 +22,6 @@ import history from '../assets/history/history';
 import { useStyles } from '../assets/style/MyappStyle';
 import Button from '@material-ui/core/Button';
 import DrawerView from './Demos/Drawer/DrawerView';
-import ListCheckBox from './Modals/ListCheckBox';
 import ListCheckBoxDemo from './Demos/ListCheckBox';
 
 const Navbar = () => {
@@ -33,8 +32,8 @@ const Navbar = () => {
       component: DrawerView
     },
     {
-      path: '/App/ListCheckBox',
-      name: 'RdioButton',
+      path: '/App/ListCheckItems',
+      name: 'ListCheckItems',
       component: ListCheckBoxDemo
     }
   ];

@@ -5,11 +5,12 @@ import {
   makeStyles,
   Theme,
   createStyles,
+  Radio,
   RadioGroup
 } from '@material-ui/core';
 import IconButton from '../IconButton';
-import { ItemsProps } from './types';
-import RadioButtonList from './RadioButtonList';
+import CheckboxList from './CheckboxList';
+import { ListRadioButtonProps } from './types';
 
 //style should be replace by props or by theme ???
 const useStyles = makeStyles((theme: Theme) =>
@@ -30,7 +31,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-const CheckboxList = (props: ItemsProps) => {
+const RadioButtonList = (props: ListRadioButtonProps) => {
   const { items, itemOnChange, iconButtonOnClick, params, disabled } = props;
   const { Icon, hasIconButton, type } = params;
   const classes = useStyles();
@@ -43,33 +44,31 @@ const CheckboxList = (props: ItemsProps) => {
             <td>
               <FormControlLabel
                 key={item.id}
-                value={item.label}
                 name={item.id}
-                control={<Checkbox color="primary" />}
+                value={item.label}
+                control={<Radio />}
                 label={item.label}
-                labelPlacement="end"
                 checked={item.isChecked}
-                onChange={itemOnChange}
                 disabled={disabled}
               />
               {hasIconButton && Icon && (
+                // Icon Button *******************
                 <IconButton
                   size="small"
                   style={classes.icon}
-                  onClick={iconButtonOnClick}
+                  onClick={(e: React.MouseEvent<HTMLInputElement>) =>
+                    iconButtonOnClick(e, item)
+                  }
+                  disabled={disabled}
                 >
-                  <Icon id={item.label} />
+                  <Icon id={item.id} />
                 </IconButton>
               )}
-
               <div style={{ marginLeft: '10px' }}>
                 {item.hasChild && item.childs ? (
+                  // Children ***********************
                   item.childs.params.type === 'radioButton' ? (
-                    <RadioGroup
-                      name="children"
-                      //   value={value}
-                      onChange={itemOnChange}
-                    >
+                    <RadioGroup name="children" onChange={itemOnChange}>
                       <RadioButtonList
                         items={item.childs.items}
                         itemOnChange={itemOnChange}
@@ -99,4 +98,4 @@ const CheckboxList = (props: ItemsProps) => {
   );
 };
 
-export default CheckboxList;
+export default RadioButtonList;

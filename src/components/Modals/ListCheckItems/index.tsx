@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import Header from './Header';
 import Columns from './Columns';
-import { ListRadioButtonProps, Data } from './types';
+import { Data, ListCheckItemsProps } from './types';
 
-const ListCheckBox = (props: ListRadioButtonProps) => {
+const ListCheckItems = (props: ListCheckItemsProps) => {
   const {
     data,
     headerIconButtonOnClick,
@@ -18,15 +18,25 @@ const ListCheckBox = (props: ListRadioButtonProps) => {
       colomn.items.map(item => {
         if (item.id === event.target.name) {
           item.isChecked = !item.isChecked;
+        } else {
+          if (data.body.params.type === 'radioButton') {
+            item.isChecked = false;
+          }
         }
         if (item.childs) {
           item.childs.items.map(child => {
             if (child.id === event.target.name) {
               child.isChecked = !child.isChecked;
+              item.isChecked = true;
+            } else {
+              if (item.childs!.params.type === 'radioButton') {
+                child.isChecked = false;
+              }
             }
             if (!item.isChecked && child.isChecked) {
               child.isChecked = !child.isChecked;
             }
+            // return child;
           });
         }
         return item;
@@ -60,4 +70,4 @@ const ListCheckBox = (props: ListRadioButtonProps) => {
   );
 };
 
-export default ListCheckBox;
+export default ListCheckItems;
