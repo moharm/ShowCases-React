@@ -1,5 +1,5 @@
 import React, { useState, ChangeEvent } from 'react';
-import { Data, Items } from '../../Modals/ListCheckItems/types';
+import { Data, Items, Columns } from '../../Modals/ListCheckItems/types';
 import { data } from '../../../assets/mock/checkBoxData';
 import ListCheckItems from '../../Modals/ListCheckItems';
 
@@ -25,10 +25,7 @@ const ListCheckBoxDemo: React.FC = () => {
     console.log(item);
   };
   //hundle change of item state
-  const itemOnChange = (
-    event: ChangeEvent,
-    newColumns: Data['body']['colomns']
-  ) => {
+  const itemOnChange = (event: ChangeEvent, newColumns: Columns) => {
     //log the items updated
     console.log(newColumns);
   };

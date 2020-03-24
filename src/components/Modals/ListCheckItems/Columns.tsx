@@ -24,11 +24,7 @@ function Columns(props: ColumnsProps) {
               </td>
             ))
           ) : (
-            <RadioGroup
-              name={params.name}
-              //   value={value}
-              onChange={itemOnChange}
-            >
+            <RadioGroup name={params.name} onChange={itemOnChange}>
               {columns.map((colomn, index) => (
                 <td key={index} style={{ display: 'block' }}>
                   <RadioButtonList //radio

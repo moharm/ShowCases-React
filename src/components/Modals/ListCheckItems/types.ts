@@ -33,11 +33,14 @@ export interface Data {
       hasIconButton: boolean;
       Icon: (props: any) => JSX.Element;
     };
-    colomns: {
+    columns: {
       items: Items;
     }[];
   };
 }
+export type Columns = Data['body']['columns'];
+
+export type Column = Data['body']['columns'][0];
 
 export interface ListCheckItemsProps {
   data: Data;
@@ -48,7 +51,7 @@ export interface ListCheckItemsProps {
   ) => void;
   itemOnChange: (
     eventChecked: React.ChangeEvent<HTMLInputElement>,
-    newColumns: Data['body']['colomns']
+    newColumns: Data['body']['columns']
   ) => void;
 }
 export interface HeaderProps {
@@ -57,7 +60,7 @@ export interface HeaderProps {
 }
 
 export interface ColumnsProps {
-  columns: Data['body']['colomns'];
+  columns: Data['body']['columns'];
   itemOnChange: (event: React.ChangeEvent<any>) => void;
   iconButtonOnClick: (
     event: React.MouseEvent<HTMLInputElement>,
@@ -73,7 +76,7 @@ export interface ColumnsProps {
 }
 
 export interface CheckboxListProps {
-  items: Data['body']['colomns'][0]['items'];
+  items: Data['body']['columns'][0]['items'];
   iconButtonOnClick: (
     event: React.MouseEvent<HTMLInputElement>,
     item: Items[0]
@@ -90,7 +93,7 @@ export interface CheckboxListProps {
 }
 
 export interface ListRadioButtonProps {
-  items: Data['body']['colomns'][0]['items'];
+  items: Data['body']['columns'][0]['items'];
   iconButtonOnClick: (
     event: React.MouseEvent<HTMLInputElement>,
     item: Items[0]
