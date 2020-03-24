@@ -12,23 +12,20 @@ const ListCheckBox = (props: ListRadioButtonProps) => {
   } = props;
   const [state, setState] = useState<Data>(data);
 
-  const hundleItemOnChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
-    checked: boolean
-  ) => {
+  const hundleItemOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.persist(); // Event Pooling
-    const colomnsUpdated = data.colomns.map(colomn => {
+    const colomnsUpdated = data.body.colomns.map(colomn => {
       colomn.items.map(item => {
         if (item.id === event.target.name) {
-          item.isChecked = checked;
+          item.isChecked = !item.isChecked;
         }
         if (item.childs) {
-          item.childs.map(child => {
+          item.childs.items.map(child => {
             if (child.id === event.target.name) {
-              child.isChecked = checked;
+              child.isChecked = !child.isChecked;
             }
             if (!item.isChecked && child.isChecked) {
-              child.isChecked = checked;
+              child.isChecked = !child.isChecked;
             }
           });
         }
@@ -42,7 +39,7 @@ const ListCheckBox = (props: ListRadioButtonProps) => {
       colomnsUpdated
     }));
 
-    itemOnChange(event, checked, colomnsUpdated);
+    itemOnChange(event, colomnsUpdated);
   };
 
   return (
@@ -54,7 +51,8 @@ const ListCheckBox = (props: ListRadioButtonProps) => {
       />
       <Columns
         key="columns"
-        columns={state.colomns}
+        columns={state.body.colomns}
+        params={state.body.params}
         itemOnChange={hundleItemOnChange}
         iconButtonOnClick={itemIconButtonOnClick}
       />

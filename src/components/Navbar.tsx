@@ -22,7 +22,8 @@ import history from '../assets/history/history';
 import { useStyles } from '../assets/style/MyappStyle';
 import Button from '@material-ui/core/Button';
 import DrawerView from './Demos/Drawer/DrawerView';
-import ListRadioButtonDemo from './Demos/ListRadioButton';
+import ListCheckBox from './Modals/ListCheckBox';
+import ListCheckBoxDemo from './Demos/ListCheckBox';
 
 const Navbar = () => {
   const pages = [
@@ -32,9 +33,9 @@ const Navbar = () => {
       component: DrawerView
     },
     {
-      path: '/App/RdioButton',
+      path: '/App/ListCheckBox',
       name: 'RdioButton',
-      component: ListRadioButtonDemo
+      component: ListCheckBoxDemo
     }
   ];
   const classes = useStyles();

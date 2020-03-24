@@ -1,17 +1,21 @@
 export type Items = Array<{
   id: string;
   label: string;
-  hasIconButton: boolean;
-  Icon?: (props: any) => JSX.Element;
   hasChild?: boolean;
   isChecked: boolean;
   childs?: {
-    id: string;
-    label: string;
-    hasIconButton: boolean;
-    Icon?: (props: any) => JSX.Element;
-    isChecked: boolean;
-  }[];
+    params: {
+      type: 'radioButton' | 'checkBox';
+      name?: string;
+      hasIconButton: boolean;
+      Icon: (props: any) => JSX.Element;
+    };
+    items: {
+      id: string;
+      label: string;
+      isChecked: boolean;
+    }[];
+  };
 }>;
 
 export interface Header {
@@ -20,10 +24,19 @@ export interface Header {
   Icon?: (props: any) => JSX.Element;
 }
 
-export interface Colomns {}
 export interface Data {
   header?: Header;
-  colomns: { items: Items }[];
+  body: {
+    params: {
+      type: 'radioButton' | 'checkBox';
+      name?: string;
+      hasIconButton: boolean;
+      Icon: (props: any) => JSX.Element;
+    };
+    colomns: {
+      items: Items;
+    }[];
+  };
 }
 
 export interface ListRadioButtonProps {
@@ -32,8 +45,7 @@ export interface ListRadioButtonProps {
   itemIconButtonOnClick: (event: React.MouseEvent<HTMLInputElement>) => void;
   itemOnChange: (
     eventChecked: React.ChangeEvent<HTMLInputElement>,
-    checked: boolean,
-    newItems: Data['colomns']
+    newItems: Data['body']['colomns']
   ) => void;
 }
 export interface HeaderProps {
@@ -42,13 +54,28 @@ export interface HeaderProps {
 }
 
 export interface ColumnsProps {
-  columns: Data['colomns'];
-  itemOnChange: (event: React.ChangeEvent<any>, checked: boolean) => void;
+  columns: Data['body']['colomns'];
+  itemOnChange: (event: React.ChangeEvent<any>) => void;
   iconButtonOnClick: (event: React.MouseEvent<HTMLInputElement>) => void;
+  params: {
+    type: 'radioButton' | 'checkBox';
+    name?: string;
+
+    hasIconButton: boolean;
+    Icon: (props: any) => JSX.Element;
+  };
 }
 
 export interface ItemsProps {
-  items: Data['colomns'][0]['items'];
+  items: Data['body']['colomns'][0]['items'];
   iconButtonOnClick: (event: React.MouseEvent<HTMLInputElement>) => void;
-  itemOnChange: (event: React.ChangeEvent<any>, checked: boolean) => void;
+  itemOnChange: (event: React.ChangeEvent<any>) => void;
+  disabled?: boolean;
+  params: {
+    type: 'radioButton' | 'checkBox';
+    name?: string;
+
+    hasIconButton: boolean;
+    Icon: (props: any) => JSX.Element;
+  };
 }

@@ -3,9 +3,8 @@ import { data } from '../../../assets/mock/checkBoxData';
 import { Data } from '../../Modals/ListCheckBox/types';
 import ListCheckBox from '../../Modals/ListCheckBox';
 
-const ListRadioButtonDemo: React.FC = () => {
+const ListCheckBoxDemo: React.FC = () => {
   const [state, setState] = useState<Data>(data);
-
   const headerIconButtonHundleClick = (event: React.MouseEvent<any>) => {
     event.persist(); // Event Pooling
     alert("event from header's iconButtom");
@@ -17,8 +16,8 @@ const ListRadioButtonDemo: React.FC = () => {
 
   const itemOnChange = (
     event: ChangeEvent,
-    checked: boolean,
-    newColumns: Data['colomns']
+
+    newColumns: Data['body']['colomns']
   ) => {
     //log the items updated
     console.log(newColumns);
@@ -36,4 +35,4 @@ const ListRadioButtonDemo: React.FC = () => {
   );
 };
 
-export default ListRadioButtonDemo;
+export default ListCheckBoxDemo;
