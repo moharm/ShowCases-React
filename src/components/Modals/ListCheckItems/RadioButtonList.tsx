@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   FormControlLabel,
-  Checkbox,
   makeStyles,
   Theme,
   createStyles,
@@ -33,7 +32,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const RadioButtonList = (props: ListRadioButtonProps) => {
   const { items, itemOnChange, iconButtonOnClick, params, disabled } = props;
-  const { Icon, hasIconButton, type } = params;
+  const { Icon, hasIconButton } = params;
   const classes = useStyles();
 
   return (

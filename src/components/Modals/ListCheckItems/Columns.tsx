@@ -1,5 +1,4 @@
 import React from 'react';
-import Items from './CheckboxList';
 import { ColumnsProps } from './types';
 import { RadioGroup } from '@material-ui/core';
 import CheckboxList from './CheckboxList';

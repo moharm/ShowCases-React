@@ -36,7 +36,7 @@ const ListCheckItems = (props: ListCheckItemsProps) => {
             if (!item.isChecked && child.isChecked) {
               child.isChecked = !child.isChecked;
             }
-            // return child;
+            return child;
           });
         }
         return item;
