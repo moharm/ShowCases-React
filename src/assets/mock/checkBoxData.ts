@@ -10,8 +10,8 @@ export const data: Data = {
   },
   body: {
     params: {
-      type: 'checkBox',
-      // name: 'radioButton',
+      type: 'radioButton',
+      name: 'radioButton',
       hasIconButton: true,
       Icon: VisibilityIcon
     },

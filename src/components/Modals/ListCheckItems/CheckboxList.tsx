@@ -34,7 +34,6 @@ const CheckboxList = (props: CheckboxListProps) => {
   const { items, itemOnChange, iconButtonOnClick, params, disabled } = props;
   const { Icon, hasIconButton } = params;
   const classes = useStyles();
-
   return (
     <table>
       <tbody>

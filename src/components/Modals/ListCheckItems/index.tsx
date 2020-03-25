@@ -28,6 +28,7 @@ const ListCheckItems = (props: ListCheckItemsProps) => {
     });
     return column;
   };
+  
   const changeChildItemState = (
     item: Items[0],
     event: React.ChangeEvent<HTMLInputElement>
@@ -42,6 +43,8 @@ const ListCheckItems = (props: ListCheckItemsProps) => {
             child.isChecked = false;
           }
         }
+        // if the parent is unchecked
+        // we need to uncheck his children also
         if (!item.isChecked && child.isChecked) {
           child.isChecked = !child.isChecked;
         }
@@ -50,6 +53,9 @@ const ListCheckItems = (props: ListCheckItemsProps) => {
     }
     return item;
   };
+
+  // hundle items changes and change the state with updated items,
+  // it send also updated items object by itemOnChange function
   const hundleItemOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.persist(); // Event Pooling
     const columnsUpdated = data.body.columns.map(column => {

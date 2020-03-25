@@ -34,7 +34,6 @@ const RadioButtonList = (props: ListRadioButtonProps) => {
   const { items, itemOnChange, iconButtonOnClick, params, disabled } = props;
   const { Icon, hasIconButton } = params;
   const classes = useStyles();
-
   return (
     <table>
       <tbody>
@@ -44,10 +43,10 @@ const RadioButtonList = (props: ListRadioButtonProps) => {
               <FormControlLabel
                 key={item.id}
                 name={item.id}
-                value={item.label}
+                value={item.id}
                 control={<Radio />}
                 label={item.label}
-                checked={item.isChecked}
+                // checked={item.isChecked}
                 disabled={disabled}
               />
               {hasIconButton && Icon && (
@@ -67,7 +66,17 @@ const RadioButtonList = (props: ListRadioButtonProps) => {
                 {item.hasChild && item.childs ? (
                   // Children ***********************
                   item.childs.params.type === 'radioButton' ? (
-                    <RadioGroup name="children" onChange={itemOnChange}>
+                    <RadioGroup
+                      name="children"
+                      value={
+                        item.childs.items.some(item => item.isChecked === true)
+                          ? item.childs.items.find(
+                              item => item.isChecked === true
+                            )!.id
+                          : null
+                      }
+                      onChange={itemOnChange}
+                    >
                       <RadioButtonList
                         items={item.childs.items}
                         itemOnChange={itemOnChange}
