@@ -35,74 +35,69 @@ const RadioButtonList = (props: ListRadioButtonProps) => {
   const { Icon, hasIconButton } = params;
   const classes = useStyles();
   return (
-    <table>
-      <tbody>
-        {items.map(item => (
-          <tr key={item.id}>
-            <td>
-              <FormControlLabel
-                key={item.id}
-                name={item.id}
-                value={item.id}
-                control={<Radio />}
-                label={item.label}
-                // checked={item.isChecked}
-                disabled={disabled}
-              />
-              {hasIconButton && Icon && (
-                // Icon Button *******************
-                <IconButton
-                  size="small"
-                  style={classes.icon}
-                  onClick={(e: React.MouseEvent<HTMLInputElement>) =>
-                    iconButtonOnClick(e, item)
+    <div style={{ display: 'block', padding: '0 0 0 10px' }}>
+      {items.map(item => (
+        <div key={item.id}>
+          <FormControlLabel
+            key={item.id}
+            name={item.id}
+            value={item.id}
+            control={<Radio />}
+            label={item.label}
+            disabled={disabled}
+          />
+          {hasIconButton && Icon && (
+            <IconButton
+              size="small"
+              style={classes.icon}
+              onClick={(e: React.MouseEvent<HTMLInputElement>) =>
+                iconButtonOnClick(e, item)
+              }
+              disabled={disabled}
+            >
+              <Icon id={item.id} />
+            </IconButton>
+          )}
+          {/* Children *********************** */}
+          <div style={{ marginLeft: '10px' }}>
+            {item.hasChild && item.childs ? (
+              item.childs.params.type === 'radioButton' ? (
+                <RadioGroup
+                  name="children"
+                  value={
+                    item.isChecked &&
+                    item.childs.items.some(child => child.isChecked)
+                      ? item.childs.items.find(item => item.isChecked === true)!
+                          .id
+                      : null
                   }
-                  disabled={disabled}
+                  onChange={itemOnChange}
                 >
-                  <Icon id={item.id} />
-                </IconButton>
-              )}
-              <div style={{ marginLeft: '10px' }}>
-                {item.hasChild && item.childs ? (
-                  // Children ***********************
-                  item.childs.params.type === 'radioButton' ? (
-                    <RadioGroup
-                      name="children"
-                      value={
-                        item.childs.items.some(item => item.isChecked === true)
-                          ? item.childs.items.find(
-                              item => item.isChecked === true
-                            )!.id
-                          : null
-                      }
-                      onChange={itemOnChange}
-                    >
-                      <RadioButtonList
-                        items={item.childs.items}
-                        itemOnChange={itemOnChange}
-                        iconButtonOnClick={iconButtonOnClick}
-                        disabled={item.isChecked ? false : true}
-                        params={item.childs.params}
-                      />
-                    </RadioGroup>
-                  ) : (
-                    <CheckboxList
-                      items={item.childs.items}
-                      itemOnChange={itemOnChange}
-                      iconButtonOnClick={iconButtonOnClick}
-                      disabled={item.isChecked ? false : true}
-                      params={item.childs.params}
-                    />
-                  )
-                ) : (
-                  undefined
-                )}
-              </div>
-            </td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
+                  <RadioButtonList
+                    items={item.childs.items}
+                    itemOnChange={itemOnChange}
+                    iconButtonOnClick={iconButtonOnClick}
+                    disabled={item.isChecked ? false : true}
+                    params={item.childs.params}
+                  />
+                </RadioGroup>
+              ) : (
+                <CheckboxList
+                  items={item.childs.items}
+                  itemOnChange={itemOnChange}
+                  iconButtonOnClick={iconButtonOnClick}
+                  disabled={item.isChecked ? false : true}
+                  params={item.childs.params}
+                />
+              )
+            ) : (
+              undefined
+            )}
+            {/* end cildren ************** */}
+          </div>
+        </div>
+      ))}
+    </div>
   );
 };
 

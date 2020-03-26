@@ -28,7 +28,7 @@ const ListCheckItems = (props: ListCheckItemsProps) => {
     });
     return column;
   };
-  
+
   const changeChildItemState = (
     item: Items[0],
     event: React.ChangeEvent<HTMLInputElement>
@@ -39,7 +39,7 @@ const ListCheckItems = (props: ListCheckItemsProps) => {
           child.isChecked = !child.isChecked;
           item.isChecked = true;
         } else {
-          if (item.childs!.params.type === 'radioButton') {
+          if (!item.isChecked && item.childs!.params.type === 'radioButton') {
             child.isChecked = false;
           }
         }

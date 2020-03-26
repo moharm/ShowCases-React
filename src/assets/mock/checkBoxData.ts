@@ -10,8 +10,8 @@ export const data: Data = {
   },
   body: {
     params: {
-      type: 'radioButton',
-      name: 'radioButton',
+      type: 'checkBox',
+      // name: 'radioButton',
       hasIconButton: true,
       Icon: VisibilityIcon
     },
@@ -133,11 +133,6 @@ export const data: Data = {
                 {
                   id: 'Adience public10.2',
                   label: 'Adience public 10.2',
-                  isChecked: false
-                },
-                {
-                  id: 'Adience public10.3',
-                  label: 'Adience public 10.3',
                   isChecked: false
                 }
               ]

@@ -8,39 +8,31 @@ function Columns(props: ColumnsProps) {
   const { columns, itemOnChange, iconButtonOnClick, params } = props;
 
   return (
-    <table>
-      <tbody>
-        <tr style={{ display: 'flex' }}>
-          {params.type === 'checkBox' ? (
-            columns.map((colomn, index) => (
-              <td key={index} style={{ display: 'block' }}>
-                <CheckboxList //checkbox
-                  items={colomn.items}
-                  itemOnChange={itemOnChange}
-                  iconButtonOnClick={iconButtonOnClick}
-                  disabled={false}
-                  params={params}
-                />
-              </td>
-            ))
-          ) : (
-            <RadioGroup name={params.name} onChange={itemOnChange}>
-              {columns.map((colomn, index) => (
-                <td key={index} style={{ display: 'block' }}>
-                  <RadioButtonList //radio
-                    items={colomn.items}
-                    itemOnChange={itemOnChange}
-                    iconButtonOnClick={iconButtonOnClick}
-                    disabled={false}
-                    params={params}
-                  />
-                </td>
-              ))}
-            </RadioGroup>
-          )}
-        </tr>
-      </tbody>
-    </table>
+    <div style={{ display: 'flex' }}>
+      {params.type === 'checkBox' ? (
+        columns.map((colomn, index) => (
+          <CheckboxList //checkbox
+            items={colomn.items}
+            itemOnChange={itemOnChange}
+            iconButtonOnClick={iconButtonOnClick}
+            disabled={false}
+            params={params}
+          />
+        ))
+      ) : (
+        <RadioGroup name={params.name} onChange={itemOnChange}>
+          {columns.map((colomn, index) => (
+            <RadioButtonList //radio
+              items={colomn.items}
+              itemOnChange={itemOnChange}
+              iconButtonOnClick={iconButtonOnClick}
+              disabled={false}
+              params={params}
+            />
+          ))}
+        </RadioGroup>
+      )}
+    </div>
   );
 }
 
